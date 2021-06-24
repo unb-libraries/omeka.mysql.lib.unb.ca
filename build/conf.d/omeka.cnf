@@ -1,0 +1,17 @@
+[mysqld]
+max_allowed_packet=64M
+
+query_cache_type=1
+query_cache_size=512M
+query_cache_limit=128M
+
+tmp_table_size=128M
+max_heap_table_size=128M
+
+innodb_buffer_pool_instances=4
+innodb_buffer_pool_size=8G
+innodb_flush_log_at_trx_commit=0
+innodb_log_buffer_size=4M
+innodb_log_file_size=256M
+
+transaction_isolation=READ-COMMITTED

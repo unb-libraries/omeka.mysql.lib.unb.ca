@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: mysql
+    appMajor: "5"
+    instance: omeka.mysql.lib.unb.ca
+    tier: database
+    uri: dev-omeka.mysql.lib.unb.ca
+    vcsOwner: unb-libraries
+    vcsRepository: mysql.lib.unb.ca
+    vcsRef: dev
+  name: omeka-mysql-lib-unb-ca
+  namespace: dev
+spec:
+  selector:
+    matchLabels:
+      uri: dev-omeka.mysql.lib.unb.ca
+  replicas: 1
+  revisionHistoryLimit: 0
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: mysql
+        appMajor: "5"
+        instance: omeka.mysql.lib.unb.ca
+        tier: database
+        uri: dev-omeka.mysql.lib.unb.ca
+        vcsOwner: unb-libraries
+        vcsRepository: mysql.lib.unb.ca
+        vcsRef: dev
+    spec:
+      nodeSelector:
+        deployenv: dev
+      containers:
+        -
+          env:
+            -
+              name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql
+                  key: root-password
+          image: "||DEPLOYMENTIMAGE||"
+          imagePullPolicy: Always
+          name: omeka-mysql-lib-unb-ca
+          ports:
+            -
+              containerPort: 3306
+              name: mysql
+          volumeMounts:
+            -
+              mountPath: /var/lib/mysql
+              name: mysql-persistent-storage
+      priorityClassName: dev-high-priority-services
+      imagePullSecrets:
+        -
+          name: github-container-registry-auth
+      restartPolicy: Always
+      volumes:
+        -
+          name: mysql-persistent-storage
+          persistentVolumeClaim:
+            claimName: omeka-mysql-lib-unb-ca

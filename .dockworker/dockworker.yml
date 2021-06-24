@@ -1,0 +1,23 @@
+dockworker:
+  version: '3.0'
+  application:
+    name: omeka.mysql.lib.unb.ca
+    finish_marker: 'mysqld: ready for connections'
+    project_prefix: IN
+    upstream_images:
+      - mysql:5.7
+    uuid: 3503
+  deployment:
+    environments:
+      - dev
+      - prod
+  github:
+    repo: omeka.mysql.lib.unb.ca
+    owner: unb-libraries
+  image:
+    push_branches:
+      - dev
+      - prod
+    name: ghcr.io/unb-libraries/omeka.mysql.lib.unb.ca
+    date_tag_image: true
+    repository: ghcr
