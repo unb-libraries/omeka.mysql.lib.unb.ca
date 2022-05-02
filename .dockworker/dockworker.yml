@@ -3,7 +3,7 @@ dockworker:
   application:
     name: omeka.mysql.lib.unb.ca
     finish_marker: 'mysqld: ready for connections'
-    project_prefix: IN
+    project_prefix: EXHIBITS
     upstream_images:
       - mysql:5.7
     uuid: 3503
