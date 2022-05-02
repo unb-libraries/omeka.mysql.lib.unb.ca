@@ -13,7 +13,7 @@
   "name": "unb-libraries/omeka.mysql.lib.unb.ca",
   "prefer-stable": true,
   "require-dev": {
-    "unb-libraries/dockworker-mysql": "~4"
+    "unb-libraries/dockworker-mysql": "^5"
   },
   "scripts": {
     "post-update-cmd": [
