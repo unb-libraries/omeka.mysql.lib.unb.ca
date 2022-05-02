@@ -5,7 +5,7 @@ services:
     command: mysqld --skip-name-resolve --max_allowed_packet=64M
     env_file:
       - ./env/mysql.env
-    restart: always
+    restart: unless-stopped
     container_name: omeka.mysql.lib.unb.ca
     expose:
       - "3306"
