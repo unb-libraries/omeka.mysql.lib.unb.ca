@@ -11,6 +11,9 @@ dockworker:
     environments:
       - dev
       - prod
+    workflow:
+      source: dockworker
+      type: deployment-workflow
   github:
     repo: omeka.mysql.lib.unb.ca
     owner: unb-libraries
